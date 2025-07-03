@@ -1,0 +1,48 @@
+.\" Copyright 2025 Daisuke Miyamoto
+.Dd April 23, 2025
+.Dt KPRINTF-CLIENT 1
+.Os
+.Sh NAME
+.Nm kprintf-client
+.Nd call a custom kernel printf syscall
+.Sh SYNOPSIS
+.Nm
+.Op Fl d Ar syscall_number
+.Ar message ...
+.Sh DESCRIPTION
+The
+.Nm
+utility calls a dynamically loaded kernel module that implements a custom
+.Xr syscall 2
+to print messages from user space directly into the kernel log.
+
+The messages are passed word by word via the
+.Xr syscall 2
+interface.
+
+The options are as follows:
+
+.Bl -tag -width Ds
+.It Fl d Ar syscall_number
+Use the specified syscall number instead of the default (550). This number must match
+the offset printed when the kernel module is loaded via
+.Xr kldload 8 .
+.El
+
+.Sh EXAMPLES
+To use syscall number 210 and send a message:
+
+.Dl % kprintf-client -d 210 Hello kernel world
+
+To use the default syscall number (550):
+
+.Dl % kprintf-client Hello default call
+
+.Sh SEE ALSO
+.Xr syscall 2 ,
+.Xr kldload 8 ,
+.Xr printf 9
+
+.Sh AUTHORS
+.An Daisuke Miyamoto
+
