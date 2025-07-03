@@ -16,4 +16,5 @@ This repository contains kernel-space `printf` implementations across two genera
 
 ## Notes
 
-Some dreams stay dormant. Others compile again.
+Some dreams stay dormant.  
+Others compile again — and do `RTFM`.
