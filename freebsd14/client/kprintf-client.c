@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
     int syscall_num = DEFAULT_SYSCALL_NUM;
     int opt;
 
-    // -d オプション処理
     while ((opt = getopt(argc, argv, "d:")) != -1) {
         switch (opt) {
         case 'd':
@@ -29,7 +28,6 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    // 残りの引数を出力
     for (int i = optind; i < argc; i++) {
         syscall(syscall_num, argv[i]);
         if (i + 1 == argc)
